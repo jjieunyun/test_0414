@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <table>
+      <tr>
+        <td>번호</td>
+        <td>제목</td>
+         <td>조회수</td>
+      </tr>
+      <tr v-for="(item,index) in $store.state.board" :key="index">
+        <td>{{item.id}}</td>
+        <td @click="addClick(item.id)">
+            {{item.title}}
+        </td>
+        <td>{{item.click}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
+  data() {
+    return {
+    }
+  },
+  computed : {
+  },
+  methods : {
+    addClick(id) {
+      this.$router.push(`/board/${id}`)
+      this.$store.state.board[id-1].click++;
+      
+    }
   }
 }
 </script>
