@@ -17,6 +17,9 @@ export default new Vuex.Store({
       const id = state.board.length +1;
       state.board.push({id : id, title : Memobox.title, memo: Memobox.memo, click: 0});
     },
+    addClick(state,id) {
+      state.board[id-1].click++; 
+    }
    
   },
   actions: {
